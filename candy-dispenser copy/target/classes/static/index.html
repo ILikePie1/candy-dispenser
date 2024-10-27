@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candy Dispenser</title>
+    <script>
+        function submitAllergyResponse(response) {
+            fetch('/api/candy/dispense?isAllergic=' + response, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => response.text())
+                .then(data => {
+                    alert(data); // Show the server response message in an alert
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+</head>
+<body>
+<h1>Candy Dispenser</h1>
+<p>Are you allergic to peanuts?</p>
+<button onclick="submitAllergyResponse(true)">Yes</button>
+<button onclick="submitAllergyResponse(false)">No</button>
+</body>
+</html>
